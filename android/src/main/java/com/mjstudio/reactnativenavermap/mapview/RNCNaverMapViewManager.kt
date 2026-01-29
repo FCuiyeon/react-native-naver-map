@@ -671,31 +671,10 @@ class RNCNaverMapViewManager : RNCNaverMapViewManagerSpec<RNCNaverMapViewWrapper
   override fun setCustomStyleId(
     view: RNCNaverMapViewWrapper?,
     value: String?,
-  ) = view.withMap { map ->
-    view?.let { wrapper ->
-      if (!value.isNullOrEmpty()) {
-        map.setCustomStyleId(
-          value,
-          object : NaverMap.OnCustomStyleLoadCallback {
-            override fun onCustomStyleLoaded() {
-              wrapper.reactContext.emitEvent(wrapper.id) { surfaceId, reactTag ->
-                NaverMapCustomStyleLoadedEvent(surfaceId, reactTag)
-              }
-            }
-
-            override fun onCustomStyleLoadFailed(exception: Exception) {
-              val message = exception.message ?: "Unknown error occurred while loading custom style"
-              wrapper.reactContext.emitEvent(wrapper.id) { surfaceId, reactTag ->
-                NaverMapCustomStyleLoadFailedEvent(surfaceId, reactTag, message)
-              }
-            }
-          },
-        )
-      } else {
-        // Clear custom style when value is null or empty
-        map.setCustomStyleId(null, null)
-      }
-    }
+  ) {
+    // Android NaverMap SDK does NOT support customStyleId.
+    // This setter exists only to satisfy the New Architecture spec contract.
+    // Intentionally no-op.
   }
 
   // endregion
