@@ -157,16 +157,13 @@
     ]
   },
   "codegenConfig": {
-    "name": "RNCNaverMapView",
+    "name": "RNCNaverMapSpec",
     "type": "all",
     "jsSrcsDir": "src",
     "android": {
       "javaPackageName": "com.mjstudio.reactnativenavermap"
     },
     "ios": {
-      "modules": [
-        "RNCNaverMap"
-      ],
       "componentProvider": {
         "RNCNaverMapView": "RNCNaverMapView",
         "RNCNaverMapArrowheadPath": "RNCNaverMapArrowheadPath",
